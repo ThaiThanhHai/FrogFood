@@ -1,0 +1,30 @@
+.dishContainer {
+  width: 100%;
+  padding: 10px 0px;
+}
+
+.dishitemContainer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin-left: 6px;
+  }
+  
+
+  .rowContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    margin: 10px 0px;
+    padding: 10px 0px;
+  }
+
+
+  @media screen and (min-width: 950px) {
+    .dishitemContainer {
+      margin-left: 20px;
+    }
+  }
