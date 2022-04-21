@@ -18,6 +18,7 @@ const Home = () => {
         <Navbar />
         <Routes>
           <Route path="/" element={<Databoard />} />
+          <Route path="/databoard" element={<Databoard />} />
           <Route path="/users" element={<List />} />
           <Route path="/categories" element={<CateDish />} />
           <Route path="/dishes" element={<Dishes />} />

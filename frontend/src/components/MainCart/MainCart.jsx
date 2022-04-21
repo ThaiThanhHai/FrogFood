@@ -1,111 +1,58 @@
 import { DeleteTwoTone } from "@mui/icons-material";
 import Empty from "../MainAccount/RightAccount/History/Empty/Empty";
 import "./mainCart.css";
-
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { removeFromCart } from "../../store/cartSlice";
 const MainCart = () => {
+  const carts = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
+
   return (
     <main className="main">
       <div className="wrapper">
         <form>
           <div className="cartContainer">
-            {/* <Empty /> */}
             <div className="main-cart">
-              <div className="title">
-                <h3>Giỏ hàng</h3>
-              </div>
-              <div className="cart">
-                <div className="item">
-                  <div className="image">
-                    <img
-                      src="https://dscnnwjxnwl3f.cloudfront.net/media/catalog/product/cache/584039753b87a8d227764e04fc461e3e/b/u/burger-534x374px_chicken-burger.png"
-                      alt=""
-                    />
+              {carts.length !== 0 ? (
+                <>
+                  <div className="title">
+                    <h3>Giỏ hàng</h3>
                   </div>
-                  <div className="name">
-                    <span>Burger Gà Thượng Hạng</span>
+                  <div className="cart">
+                    {carts.map((item) => (
+                      <div className="item" key={item.id}>
+                        <div className="image">
+                          <img src={item.imgSrc} alt="" />
+                        </div>
+                        <div className="name">
+                          <span>{item.name}</span>
+                        </div>
+                        <div className="quantity">
+                          <span>{item.quantity}</span>
+                        </div>
+                        <div className="price">
+                          <span>{item.price}.000đ</span>
+                        </div>
+                        <div className="remove">
+                          <DeleteTwoTone
+                            onClick={(e) => {
+                              e.preventDefault();
+                              dispatch(removeFromCart(item.id));
+                            }}
+                          />
+                        </div>
+                      </div>
+                    ))}
+
+                    <div className="btn-pay">
+                      <button>Thanh toán</button>
+                    </div>
                   </div>
-                  <div className="quantity">
-                    <span>1</span>
-                  </div>
-                  <div className="price">
-                    <span>35.000đ</span>
-                  </div>
-                  <div className="remove">
-                    <button>
-                      <DeleteTwoTone />
-                    </button>
-                  </div>
-                </div>
-                <div className="item">
-                  <div className="image">
-                    <img
-                      src="https://dscnnwjxnwl3f.cloudfront.net/media/catalog/product/cache/584039753b87a8d227764e04fc461e3e/b/u/burger-534x374px_chicken-burger.png"
-                      alt=""
-                    />
-                  </div>
-                  <div className="name">
-                    <span>Burger Gà Thượng Hạng</span>
-                  </div>
-                  <div className="quantity">
-                    <span>1</span>
-                  </div>
-                  <div className="price">
-                    <span>35.000đ</span>
-                  </div>
-                  <div className="remove">
-                    <button>
-                      <DeleteTwoTone />
-                    </button>
-                  </div>
-                </div>
-                <div className="item">
-                  <div className="image">
-                    <img
-                      src="https://dscnnwjxnwl3f.cloudfront.net/media/catalog/product/cache/584039753b87a8d227764e04fc461e3e/b/u/burger-534x374px_chicken-burger.png"
-                      alt=""
-                    />
-                  </div>
-                  <div className="name">
-                    <span>Burger Tôm Thượng Hạng</span>
-                  </div>
-                  <div className="quantity">
-                    <span>1</span>
-                  </div>
-                  <div className="price">
-                    <span>35.000đ</span>
-                  </div>
-                  <div className="remove">
-                    <button>
-                      <DeleteTwoTone />
-                    </button>
-                  </div>
-                </div>
-                <div className="item">
-                  <div className="image">
-                    <img
-                      src="https://dscnnwjxnwl3f.cloudfront.net/media/catalog/product/cache/584039753b87a8d227764e04fc461e3e/b/u/burger-534x374px_chicken-burger.png"
-                      alt=""
-                    />
-                  </div>
-                  <div className="name">
-                    <span>Burger Doblue Double</span>
-                  </div>
-                  <div className="quantity">
-                    <span>1</span>
-                  </div>
-                  <div className="price">
-                    <span>35.000đ</span>
-                  </div>
-                  <div className="remove">
-                    <button>
-                      <DeleteTwoTone />
-                    </button>
-                  </div>
-                </div>
-                <div className="btn-pay">
-                  <button>Thanh toán</button>
-                </div>
-              </div>
+                </>
+              ) : (
+                <Empty />
+              )}
             </div>
           </div>
         </form>

@@ -47,9 +47,20 @@
     cursor: pointer;
 }
 
+.center ul .side-link.active li {
+    background-color: #51873e;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.center ul .side-link.active li .icon,  .center ul .side-link.active li span{
+    color: #fff;
+}
 
 .center ul li:hover {
     background-color: #51873e;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
 }
 
 .center ul li:hover .icon,  .center ul li:hover span{

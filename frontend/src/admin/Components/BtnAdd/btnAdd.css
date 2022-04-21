@@ -1,0 +1,27 @@
+.btnAdd {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    border: 1px solid green;
+    top: 20px;
+    right: 30px;
+    position: absolute;
+    width: 70px; 
+    padding: 4px;   
+    color: green;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.btnAdd:hover {
+    background-color: green;
+    color: #fff;
+}
+
+.btnAdd .MuiSvgIcon-root {
+    font-size: 20px;
+}
+
+.btnAdd:hover .MuiSvgIcon-root {
+    color: #fff;
+}

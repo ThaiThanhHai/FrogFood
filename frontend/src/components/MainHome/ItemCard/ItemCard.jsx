@@ -1,7 +1,16 @@
 import { AddRounded } from "@mui/icons-material";
+import { useDispatch } from "react-redux";
+import { addtoCart } from "../../../store/cartSlice";
 import "./itemCard.css";
 
-const ItemCard = ({ imgSrc, name, price, itemId }) => {
+const ItemCard = ({ id, itemId, imgSrc, name, price }) => {
+  const dispatch = useDispatch();
+
+  const handleAddToCart = () => {
+    dispatch(
+      addtoCart({ id, itemId, imgSrc, name, price: Number(price), quantity: 1 })
+    );
+  };
   return (
     <div className="itemCard" id={itemId}>
       <div className="imgBox">
@@ -14,9 +23,9 @@ const ItemCard = ({ imgSrc, name, price, itemId }) => {
             {price}
             <span>đ</span>
           </h3>
-          <i className="addtoCart">
+          <button className="addtoCart" onClick={handleAddToCart}>
             <AddRounded />
-          </i>
+          </button>
         </div>
       </div>
     </div>

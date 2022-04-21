@@ -15,7 +15,7 @@ const DishContainer = () => {
 
   useEffect(() => {
     axios
-      .get("api/categories/")
+      .get("/api/categories")
       .then((res) => {
         setCats(res.data);
         console.log(res.data);
@@ -70,7 +70,8 @@ const DishContainer = () => {
           isMainData.map((data) => (
             <ItemCard
               key={data.id}
-              itemId={data.id}
+              id={data.id}
+              itemId={data.itemId}
               imgSrc={data.imgSrc}
               name={data.name}
               price={data.price}

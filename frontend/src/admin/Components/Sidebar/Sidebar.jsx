@@ -1,4 +1,4 @@
-import { Link, Outlet } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import LocalShippingIcon from "@mui/icons-material/LocalShipping";
@@ -20,51 +20,51 @@ const Sidebar = () => {
       <div className="hr"></div>
       <div className="center">
         <ul>
-          <Link to="/admin">
+          <NavLink to="databoard" className="side-link">
             <li>
               <DashboardIcon className="icon" />
               <span>Trang chủ</span>
             </li>
-          </Link>
+          </NavLink>
           <p className="title">Danh sách</p>
-          <Link to="users">
+          <NavLink to="users" className="side-link">
             <li>
               <PersonOutlineIcon className="icon" />
               <span>Người dùng</span>
             </li>
-          </Link>
-          <Link to="categories">
+          </NavLink>
+          <NavLink to="categories" className="side-link">
             <li>
               <StoreIcon className="icon" />
               <span>Loại món ăn</span>
             </li>
-          </Link>
-          <Link to="dishes">
+          </NavLink>
+          <NavLink to="dishes" className="side-link">
             <li>
               <CreditCardIcon className="icon" />
               <span>Món ăn</span>
             </li>
-          </Link>
-          <Link to="orders">
+          </NavLink>
+          <NavLink to="orders" className="side-link">
             <li>
               <LocalShippingIcon className="icon" />
               <span>Đơn đặt hàng</span>
             </li>
-          </Link>
+          </NavLink>
           <p className="title">Tiện ích</p>
-          <Link to="statistic">
+          <NavLink to="statistic" className="side-link">
             <li>
               <InsertChartIcon className="icon" />
               <span>Thống kê</span>
             </li>
-          </Link>
+          </NavLink>
 
-          <Link to="logorder">
+          <NavLink to="logorder" className="side-link">
             <li>
               <SettingsSystemDaydreamOutlinedIcon className="icon" />
               <span>Lịch sử đơn hàng</span>
             </li>
-          </Link>
+          </NavLink>
           <li>
             <SettingsApplicationsIcon className="icon" />
             <span>Thiết lập</span>

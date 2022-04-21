@@ -2,6 +2,8 @@ const express = require("express");
 const dotenv = require("dotenv");
 const route = require("./routes");
 const db = require("./config/db/db");
+const fileupload = require("express-fileupload");
+const cors = require("cors");
 const app = express();
 const port = 5000;
 dotenv.config();
@@ -9,7 +11,8 @@ dotenv.config();
 // Get data req.body
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.use(fileupload());
+app.use(cors());
 // Connect to database
 db.connect();
 

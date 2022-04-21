@@ -1,0 +1,88 @@
+.modal {
+    position: fixed;
+    left: 215px;
+    right: 10px;
+    top: 70px;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    z-index: 200;
+}
+
+.modal-content {
+    margin-top: 20px;
+    width: 800px;
+    background-color: #fff;
+    text-align: center;
+    border-radius: 8px;
+    position: relative;
+}
+.modal-content .modal-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #51873e;
+    letter-spacing: 0.5px;
+    margin-top: 10px;
+}
+
+.modal-content .btn-exit {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: red;
+    padding: 0px 8px;
+    border-top-right-radius: 8px;
+    cursor: pointer;
+}
+
+.modal-content .btn-exit span {
+    color: #fff;
+    font-size: 14px;
+
+}
+
+.modal-content label {
+    margin-top: 20px;
+}
+
+.modal-content label,
+.modal-content input {
+    display: block;
+    margin: 0px 5%;
+    width: 90%;
+    text-align: left;
+    margin-top: 20px;
+}
+
+.modal-content input,
+.modal-content button {
+    display: block;
+    padding: 8px;
+    outline: none;
+    font-size: 14px;
+    margin-top: 4px;
+    border: 1px solid lightgrey;
+}
+
+.modal-content .error-container {
+    width: 100%;
+    font-size: 12px;
+    text-align: left;
+    margin: 0px 5%;
+}
+.error-container span {
+    list-style-position: inside;
+    color: red;
+}
+.modal-content button {
+    float: right;
+    text-transform: uppercase;
+    background-color: #51873e;
+    border: none;
+    border-radius: 3px;
+    color: white;
+    font-weight: bold;
+    margin: 20px 5% 20px 0px;
+}
