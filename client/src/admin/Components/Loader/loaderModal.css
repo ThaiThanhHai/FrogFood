@@ -1,0 +1,17 @@
+.loaderModal {
+    top: -100px;
+    bottom: 0;
+    left: -255px;
+    right: 0;
+    position: absolute;
+    width: 130%;
+    height: 120%;
+    background-color: rgb(0, 0, 0, 0.15);
+    z-index: 200;
+}
+
+.loaderModal img {
+    position: absolute;
+    top: 200px;
+    left: 600px;
+}
