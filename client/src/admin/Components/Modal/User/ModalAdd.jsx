@@ -29,6 +29,7 @@ const ModalAdd = ({ setIsShow, setIsLoading }) => {
     try {
       await Axios.post(url, data, type);
       setIsComplete(false);
+      setIsShow(false);
       toast.success("Tạo tài khoản thành công");
     } catch (err) {
       console.log(err);

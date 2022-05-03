@@ -20,6 +20,7 @@ const ModalUpdate = ({ Cats, idUpdate, setIsShow }) => {
     try {
       await axios.put(url, data, type);
       setIsUpdateComplete(false);
+      setIsShow(false);
       toast.success("Cập nhật thành công");
     } catch (err) {
       console.log(err);
@@ -35,8 +36,6 @@ const ModalUpdate = ({ Cats, idUpdate, setIsShow }) => {
     let data;
     let type;
     if (file) {
-      console.log("Có update ảnh");
-
       const storageRef = ref(storage, `/categories/${file.name}`);
       const uploadTask = uploadBytesResumable(storageRef, file);
 

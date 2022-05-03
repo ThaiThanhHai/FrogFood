@@ -3,7 +3,7 @@ import Navbar from "../Components/Navbar/Navbar";
 import Sidebar from "../Components/Sidebar/Sidebar";
 import Databoard from "../Databoard/Databoard";
 import Users from "../Users/Users";
-import CateDish from "../CateDish/CateDish";
+import Categories from "../Categories/Categories";
 import Dishes from "../Dishes/Dishes";
 import Orders from "../Orders/Orders";
 import Statistic from "../Statistic/Statistic";
@@ -20,7 +20,7 @@ const Home = () => {
           <Route path="/" element={<Databoard />} />
           <Route path="/databoard" element={<Databoard />} />
           <Route path="/users" element={<Users />} />
-          <Route path="/categories" element={<CateDish />} />
+          <Route path="/categories" element={<Categories />} />
           <Route path="/dishes" element={<Dishes />} />
           <Route path="/orders" element={<Orders />} />
           <Route path="/statistic" element={<Statistic />} />

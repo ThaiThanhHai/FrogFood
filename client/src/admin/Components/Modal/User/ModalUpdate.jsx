@@ -21,6 +21,7 @@ const ModalUpdate = ({ Users, idUpdate, setIsShow }) => {
     try {
       await Axios.put(url, data, type);
       setIsComplete(false);
+      setIsShow(false);
       toast.success("Cập nhật tài khoản thành công");
     } catch (err) {
       console.log(err);
@@ -123,7 +124,6 @@ const ModalUpdate = ({ Users, idUpdate, setIsShow }) => {
             {User[0].isAdmin ? (
               <select
                 name="isAdmin"
-                id=""
                 className="classic"
                 onChange={(e) => setIsAdmin(e.target.value)}
               >
@@ -133,7 +133,6 @@ const ModalUpdate = ({ Users, idUpdate, setIsShow }) => {
             ) : (
               <select
                 name="isAdmin"
-                id=""
                 className="classic"
                 onChange={(e) => setIsAdmin(e.target.value)}
               >

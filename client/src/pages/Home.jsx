@@ -11,7 +11,7 @@ const Home = () => {
       <Routes>
         <Route index element={<Main />} />
         <Route path="dish" element={<Main />} />
-        <Route path="cart" element={<Cart />} />
+        <Route path="cart/*" element={<Cart />} />
         <Route path="blog" element={<Blog />} />
         <Route path="account" element={<Account />} />
         <Route path="admin/*" element={<HomeAdmin />} />

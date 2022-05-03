@@ -5,6 +5,7 @@ import {
   Dehaze,
 } from "@mui/icons-material";
 import { Link, Outlet } from "react-router-dom";
+import { useSelector } from "react-redux";
 import "./header.css";
 
 function Header() {
@@ -17,8 +18,10 @@ function Header() {
   };
   const currentUser = localStorage.getItem("user")
     ? JSON.parse(localStorage.getItem("user"))
-    : user;
-  console.log(currentUser);
+    : null;
+  const carts = useSelector((state) => state.cart);
+  const myCart = carts.filter((item) => item.user === currentUser.email);
+  // console.log(currentUser);
 
   useEffect(() => {
     const toggleMenu = document.querySelector(".toggleMenu");
@@ -43,12 +46,12 @@ function Header() {
       </div>
 
       {/* shopping cart */}
-      <div className="shoppingCart">
+      <Link to="/cart" className="shoppingCart">
         <ShoppingCartRounded className="cart" />
         <div className="cart_Content">
-          <p>2</p>
+          <p>{myCart.length}</p>
         </div>
-      </div>
+      </Link>
 
       {/* profile */}
 

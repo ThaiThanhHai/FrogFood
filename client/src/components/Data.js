@@ -1,7 +1,7 @@
 const MenuItems = [
   {
     id: 1,
-    itemId: "buger01",
+    itemId: "burger01",
     name: "Burger",
     imgSrc: "https://iili.io/VhkhlI.md.png",
   },

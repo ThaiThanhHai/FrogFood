@@ -65,12 +65,13 @@
   }
   
   .itemContent .bottom .price {
-    font-size: 16px;
+    font-size: 18px;
+    color: #51873e;
   }
   
   .itemContent .bottom .price span {
     color: #51873e;
-    font-size: 12px;
+    font-size: 18px;
   }
   
   .itemContent .addtoCart {
@@ -110,11 +111,24 @@
   
     .itemContent .itemName {
       font-size: 16px;
-      margin-bottom: 30px;
+      margin-bottom: 10px;
+    }
+
+    .itemContent .bottom .price {
+      font-size: 18px;
     }
   
     .itemCard .imgBox {
       width: 120px;
       height: 120px;
+    }
+
+    .itemContent .addtoCart {
+      width: 40px;
+      height: 40px;
+    }
+
+    .itemContent .addtoCart .MuiSvgIcon-root {
+      font-size: 35px;
     }
   }

@@ -1,20 +1,60 @@
 import { AddRounded } from "@mui/icons-material";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import Axios from "axios";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { addtoCart } from "../../../store/cartSlice";
+import { useNavigate } from "react-router-dom";
 import "./itemCard.css";
 
-const ItemCard = ({ id, itemId, imgSrc, name, price }) => {
+const ItemCard = ({ id, category, image, name, price, quantity }) => {
+  const currentUser = localStorage.getItem("user")
+    ? JSON.parse(localStorage.getItem("user"))
+    : null;
+  const Carts = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
-  const handleAddToCart = () => {
-    dispatch(
-      addtoCart({ id, itemId, imgSrc, name, price: Number(price), quantity: 1 })
-    );
+  const handleAddToCart = async () => {
+    if (currentUser.username) {
+      dispatch(
+        addtoCart({
+          id,
+          category,
+          image,
+          name,
+          price: Number(price),
+          quantity: 1,
+          isPayment: false,
+          user: currentUser.email,
+        })
+      );
+      toast.success("Bạn đã thêm vào giỏ hàng");
+      // const url = "/api/cart/create";
+      // let data = {
+      //   user: currentUser.email,
+      //   dish: name,
+      //   quantity: 1,
+      //   image,
+      //   price: Number(price),
+      //   isPayment: false,
+      // };
+      // let type = {
+      //   headers: { "Content-Type": "application/json" },
+      // };
+
+      // try {
+      //   await Axios.post(url, data, type);
+      // } catch (error) {}
+    } else {
+      navigate("/login");
+    }
   };
+
   return (
-    <div className="itemCard" id={itemId}>
+    <div className="itemCard" id={category}>
       <div className="imgBox">
-        <img src={imgSrc} alt="" className="itemImg" />
+        <img src={image} alt="" className="itemImg" />
       </div>
       <div className="itemContent">
         <h3 className="itemName">{name}</h3>

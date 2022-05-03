@@ -7,10 +7,13 @@ import {
   ShoppingCart,
   Login,
 } from "@mui/icons-material";
+import { useDispatch } from "react-redux";
+import { logout } from "../../store/userSlice";
 import Container from "./Container";
 import "./navigation.css";
 
 const Navigation = () => {
+  const dispatch = useDispatch();
   const user = {
     username: "",
     email: "",
@@ -37,7 +40,15 @@ const Navigation = () => {
         {isAdmin ? (
           <Container link={"admin"} icon={<AdminPanelSettings />} />
         ) : null}
-        {currentUser && <Container link={"login"} icon={<Login />} />}
+        {currentUser && (
+          <Container
+            link={"login"}
+            icon={<Login />}
+            onClick={() => {
+              dispatch(logout());
+            }}
+          />
+        )}
         <div className="indicator"></div>
       </ul>
     </div>

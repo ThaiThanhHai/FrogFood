@@ -16,6 +16,7 @@ const ChangePass = ({ Users, id, setIsShow }) => {
     try {
       await Axios.put(url, data, type);
       setIsComplete(false);
+      setIsShow(false);
       toast.success("Thay đổi mật khẩu thành công");
     } catch (err) {
       console.log(err);

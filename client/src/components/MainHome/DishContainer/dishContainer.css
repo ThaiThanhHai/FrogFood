@@ -1,6 +1,6 @@
 .dishContainer {
   width: 100%;
-  padding: 10px 0px;
+  padding: 0px;
 }
 
 .dishitemContainer {
@@ -16,8 +16,6 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    overflow-x: scroll;
-    overflow-y: hidden;
     margin: 10px 0px;
     padding: 10px 0px;
   }
@@ -25,6 +23,10 @@
 
   @media screen and (min-width: 950px) {
     .dishitemContainer {
-      margin-left: 20px;
+      margin-left: 40px;
+    }
+
+    .rowContainer {
+      margin: 10px 40px;
     }
   }

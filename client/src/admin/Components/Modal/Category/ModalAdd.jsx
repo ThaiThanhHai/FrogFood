@@ -11,7 +11,6 @@ const ModalAdd = ({ setIsShow, setIsLoading }) => {
   const [name, setName] = useState("");
   const [id, setId] = useState("");
   const [isAddComplete, setIsAddComplete] = useState(false);
-  const [checkItemID, setcheckItemID] = useState(false);
 
   toast.configure();
 
@@ -19,20 +18,15 @@ const ModalAdd = ({ setIsShow, setIsLoading }) => {
     try {
       await axios.post(url, data, type);
       setIsAddComplete(false);
+      setIsShow(false);
       toast.success("Thêm thành công");
-    } catch (err) {
-      console.log(err);
-      toast.error("Có lỗi xảy ray, vui lòng thử lại!");
-    }
-  };
-
-  const handleCheckItemID = async (itemID) => {
-    const url = `/api/categories/${itemID}`;
-    try {
-      await axios.get(url);
-      setcheckItemID(true);
-    } catch (err) {
-      console.log(err);
+    } catch (error) {
+      setIsAddComplete(false);
+      if (error.response.status === 409) {
+        toast.error("Lỗi! Loại món ăn đã có trong CSDL");
+      } else {
+        toast.error("Có lỗi xảy ray, vui lòng thử lại!");
+      }
     }
   };
 
@@ -42,14 +36,6 @@ const ModalAdd = ({ setIsShow, setIsLoading }) => {
     const file = e.target[2]?.files[0];
     if (!file) {
       toast.error("Lỗi! chưa upload ảnh loại món ăn");
-      setIsAddComplete(false);
-      return;
-    }
-
-    // Kiểm tra itemID có trong CSDL chưa
-    handleCheckItemID(id);
-    if (!checkItemID) {
-      toast.error("Loại món ăn đã có trong CSDL!");
       setIsAddComplete(false);
       return;
     }
@@ -105,6 +91,7 @@ const ModalAdd = ({ setIsShow, setIsLoading }) => {
             name="id"
             id="id"
             placeholder="Vd: burger01"
+            value={id}
             onChange={(e) => setId(e.target.value)}
           />
           {/* Input[text] tên món ăn */}
@@ -113,6 +100,7 @@ const ModalAdd = ({ setIsShow, setIsLoading }) => {
             type="text"
             name="name"
             id="name"
+            value={name}
             placeholder="VD: Burger"
             onChange={(e) => setName(e.target.value)}
           />

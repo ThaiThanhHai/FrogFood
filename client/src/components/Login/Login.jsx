@@ -26,13 +26,9 @@ const Login = () => {
     email: "",
     password: "",
   });
-  const [dispatchDataLogin, setDispatchDataLogin] = useState({
-    username: "",
-    email: "",
-    image: "",
-    isAdmin: false,
-    token: "",
-  });
+  const [dispatchDataLogin, setDispatchDataLogin] = useState([
+    { username: "", email: "", image: "", isAdmin: false, token: "" },
+  ]);
   const [isComplete, setIsComplete] = useState(false);
   const [isToggle, setIsToggle] = useState(true);
 
