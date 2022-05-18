@@ -1,0 +1,97 @@
+.question {
+    width: 80%;
+    height: auto;
+    margin: 30px;
+}
+
+.question .r-title {
+    font-size: 20px;
+    color: #51873e;
+    letter-spacing: 0.5px;
+    padding: 10px;
+    text-align: center;
+}   
+
+.question .q-content {
+    margin: 12px 0px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.q-content .q-info {
+    flex: 2;
+    margin-right: 5%;
+}
+
+.q-info h3 {
+    font-size: 20px;
+    padding: 10px;
+}
+
+.q-info .text {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 4px;   
+}
+
+.q-info .text h4 {
+    width: 25%;
+    font-size: 16px;
+
+}
+
+.q-info .text span {
+    width: 75%;
+    font-size: 16px;
+}
+
+.q-content .q-form {
+    flex: 3;
+    position: relative;
+
+}
+
+.q-form .form-group {
+    margin: 10px 0px;
+    height: auto;
+}
+
+.q-form .form-group select {
+    width: 100%;
+    background-color: white;
+    border: thin solid lightgrey;
+    border-radius: 4px;
+    display: inline-block;
+    font: inherit;
+    line-height: 16px;
+    padding: 4px;
+    outline: none;
+    border-radius: 4px;
+}
+
+.q-form .form-group textarea {
+    width: 100%;
+    border: thin solid lightgrey;
+    outline: none;
+    height: 100px;
+    padding: 4px;
+    color: #333;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.q-form .form-group .btn-send {
+    width: 20%;
+    height: 10%;
+    padding: 10px;
+    background: #51873e;
+    color: #fff;
+    outline: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+

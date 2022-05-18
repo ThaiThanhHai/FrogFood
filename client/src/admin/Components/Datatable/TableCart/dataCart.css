@@ -1,0 +1,142 @@
+.tableWrap {
+  margin-top: 20px;
+  height: 350px;
+  border: 1px solid #51873e;
+  overflow: auto;
+  font-size: 14px;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+thead {
+  font-weight: 500;
+  color: #fff;
+}
+
+thead tr th {
+  position: sticky;
+  top: 0;
+  padding: 16px;
+  padding-left: 15px;
+  border-left: 1px dotted rgba(200, 209, 224, 0.6);
+  border-bottom: 1px solid #e8e8e8;
+  background: #51873e;
+  text-align: left;
+  box-shadow: 0px 0px 0 2px #e8e8e8;
+  text-align: center;
+}
+
+tbody tr {
+  border-bottom: 1px solid #e8e8e8;
+}
+
+table td {
+  padding: 16px;
+  text-align: center;
+}
+
+table td textarea {
+  resize: none;
+  border: none;
+  outline: none;
+  width: 100%;
+  background: transparent;
+}
+
+table td .btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  flex-direction: row;
+}
+
+table td .btn .btn-update {
+  background: none;
+  border: 1px solid blue;
+  outline: none;
+  padding: 4px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+table td .btn .btn-update:hover {
+  background-color: rgb(74, 74, 190);
+}
+
+table td .btn .btn-update .MuiSvgIcon-root {
+  color: blue;
+  font-size: 18px;
+}
+
+table td .btn .btn-delete {
+  background: none;
+  border: 1px solid red;
+  outline: none;
+  padding: 4px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+table td .btn .btn-delete:hover {
+  background-color: rgb(236, 71, 71)
+}
+
+table td .btn .btn-delete .MuiSvgIcon-root {
+  color: red;
+  font-size: 18px;
+}
+
+table td .btn .btn-delete:hover .MuiSvgIcon-root, 
+table td .btn .btn-update:hover .MuiSvgIcon-root {
+  color: #fff;
+}
+
+tbody tr:hover, tbody tr:hover textarea{
+  background: #d7e2d4;
+}
+
+tbody tr td .itemImage {
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  object-fit:contain;
+  margin-right: 8px;
+}
+
+tbody tr td:nth-child(2) {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-left: 20px;
+}
+
+.btn-confirm {
+  border: 1px solid #51873e;
+  border-radius: 5px;
+  padding: 8px;
+  background: #51873e;
+  color: #fff;
+  cursor: pointer;
+}
+
+.btn-confirm:hover {
+  background: #51873e;
+  color: #fff;
+}
+
+.btn-delivery {
+  border: 1px solid #2a92bb;
+  border-radius: 4px;
+  padding: 8px;
+  background: #2a92bb;
+  color: #fff;
+  cursor: pointer;
+}
+
+.btn-delivery:hover {
+  background: #2a92bb;
+  color: #fff;
+}

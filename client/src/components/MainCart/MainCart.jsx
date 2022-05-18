@@ -1,22 +1,29 @@
 import { useEffect, useState } from "react";
-import { Circle, DeleteTwoTone } from "@mui/icons-material";
+import {
+  DeleteTwoTone,
+  Feed,
+  Payment,
+  ShoppingCart,
+} from "@mui/icons-material";
 import Empty from "../MainAccount/RightAccount/History/Empty/Empty";
 import "./mainCart.css";
 import { useDispatch, useSelector } from "react-redux";
 import { removeFromCart } from "../../store/cartSlice";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 
 const MainCart = () => {
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const carts = useSelector((state) => state.cart);
   const currentUser = localStorage.getItem("user")
     ? JSON.parse(localStorage.getItem("user"))
     : null;
 
   let myCart = carts.filter((item) => item.user === currentUser.email);
-  // console.log(myCart);
-  useEffect(() => {}, [currentUser]);
+
+  const [note, setNote] = useState("");
+
+  useEffect(() => {}, [currentUser, myCart]);
 
   const SumPrice = (cart) => {
     let sumPrice = 0;
@@ -41,7 +48,7 @@ const MainCart = () => {
               <div className="step">
                 <div className="inner">
                   <div className="icon">
-                    <Circle className="active" />
+                    <ShoppingCart className="active" />
                   </div>
                   <span>Giỏ hàng</span>
                 </div>
@@ -49,7 +56,7 @@ const MainCart = () => {
               <div className="step">
                 <div className="inner">
                   <div className="icon">
-                    <Circle />
+                    <Feed />
                   </div>
                   <span>Thông tin</span>
                 </div>
@@ -57,7 +64,7 @@ const MainCart = () => {
               <div className="step">
                 <div className="inner">
                   <div className="icon">
-                    <Circle />
+                    <Payment />
                   </div>
                   <span>Thanh toán</span>
                 </div>
@@ -65,6 +72,12 @@ const MainCart = () => {
             </div>
             <div className="main-cart">
               <div className="cart-content">
+                <div className="header-cart">
+                  <div className="title">Giỏ hàng của bạn</div>
+                  <Link className="btn-add-cart" to="/">
+                    +Thêm món ăn
+                  </Link>
+                </div>
                 <div className="cart">
                   {myCart.map((item, index) => (
                     <div className="item" key={index}>
@@ -93,6 +106,9 @@ const MainCart = () => {
                 </div>
               </div>
               <div className="cart-right">
+                <div className="top">
+                  <span>THÔNG TIN ĐƠN HÀNG</span>
+                </div>
                 <div className="content">
                   <div className="sub-total">
                     <div className="lbl">Tổng cộng</div>
@@ -111,14 +127,7 @@ const MainCart = () => {
                     <div className="price">{Total}đ</div>
                   </div>
                 </div>
-                <div className="note-content">
-                  <label htmlFor="notes">Ghi chú</label>
-                  <textarea
-                    name="notes"
-                    id="notes"
-                    placeholder="VD: Thêm nhiều tương ớt, tương cà"
-                  ></textarea>
-                </div>
+
                 <Link className="btn-payment" to="step2">
                   Tiếp tục
                 </Link>

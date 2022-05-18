@@ -8,7 +8,7 @@
 }
 
 .empty .title {
-    font-size: 24px;
+    font-size: 20px;
     font-weight: 600;
     letter-spacing: 0.5px;
     color: #51873e;
@@ -17,8 +17,7 @@
 
 .empty .image {
     width: 250px;
-    height: 350px;
-    /* background: teal; */
+    height: 250px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -32,7 +31,7 @@
 }
 
 .empty .text {
-    font-size: 20px;
+    font-size: 16px;
     color: #333;
     font-weight: 500;
     padding: 10px;

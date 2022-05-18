@@ -1,16 +1,21 @@
 import {
   PersonRounded,
   ArticleRounded,
-  ChatBubbleOutlineRounded,
   HelpOutlineRounded,
   LockRounded,
   PersonRemoveRounded,
+  ArrowBackRounded,
+  LocalShipping,
 } from "@mui/icons-material";
 import "./leftAccount.css";
+import { Link, Outlet } from "react-router-dom";
 
 const LeftAccount = () => {
   return (
     <div className="account-left non-menu">
+      <button className="btn-back">
+        <ArrowBackRounded />
+      </button>
       <div className="l-avatar">
         <div className="image">
           <img
@@ -25,43 +30,44 @@ const LeftAccount = () => {
       <div className="l-menu">
         <ul>
           <li>
-            <a href={"##"}>
+            <Link to="info">
               <PersonRounded />
               <span>Thông tin tài khoản</span>
-            </a>
+            </Link>
           </li>
           <li>
-            <a href={"##"}>
+            <Link to="history">
               <ArticleRounded />
               <span>Lịch sử đơn hàng</span>
-            </a>
+            </Link>
           </li>
           <li>
-            <a href={"##"}>
-              <ChatBubbleOutlineRounded />
-              <span>Thông báo</span>
-            </a>
+            <Link to="delivery">
+              <LocalShipping />
+              <span>Đơn hàng hiện tại</span>
+            </Link>
           </li>
           <li>
-            <a href={"##"}>
+            <Link to="qna">
               <HelpOutlineRounded />
               <span>Hỏi Đáp</span>
-            </a>
+            </Link>
           </li>
           <li>
-            <a href={"##"}>
+            <Link to="change_password">
               <LockRounded />
               <span>Thay đổi mật khẩu</span>
-            </a>
+            </Link>
           </li>
           <li>
-            <a href={"##"}>
+            <Link to="delete_account">
               <PersonRemoveRounded />
               <span>Thu hồi tài khoản</span>
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
+      <Outlet />
     </div>
   );
 };

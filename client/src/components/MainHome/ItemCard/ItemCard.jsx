@@ -30,22 +30,6 @@ const ItemCard = ({ id, category, image, name, price, quantity }) => {
         })
       );
       toast.success("Bạn đã thêm vào giỏ hàng");
-      // const url = "/api/cart/create";
-      // let data = {
-      //   user: currentUser.email,
-      //   dish: name,
-      //   quantity: 1,
-      //   image,
-      //   price: Number(price),
-      //   isPayment: false,
-      // };
-      // let type = {
-      //   headers: { "Content-Type": "application/json" },
-      // };
-
-      // try {
-      //   await Axios.post(url, data, type);
-      // } catch (error) {}
     } else {
       navigate("/login");
     }

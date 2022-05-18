@@ -9,6 +9,7 @@ import LoaderModal from "../../Loader/LoaderModal";
 
 const ModalAdd = ({ setIsShow, setIsLoading }) => {
   const [name, setName] = useState("");
+
   const [id, setId] = useState("");
   const [isAddComplete, setIsAddComplete] = useState(false);
 

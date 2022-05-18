@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-import { Circle, DeleteTwoTone } from "@mui/icons-material";
+import { Feed, Payment, ShoppingCart } from "@mui/icons-material";
 import Empty from "../MainAccount/RightAccount/History/Empty/Empty";
 import "./mainInfoCart.css";
 import { useSelector } from "react-redux";
 import { Link, Outlet } from "react-router-dom";
+import { updateUser } from "../../store/userSlice";
+import { useDispatch } from "react-redux";
 
 const MainInfoCart = () => {
   const carts = useSelector((state) => state.cart);
@@ -11,7 +13,19 @@ const MainInfoCart = () => {
     ? JSON.parse(localStorage.getItem("user"))
     : null;
   let myCart = carts.filter((item) => item.user === currentUser.email);
+  const dispatch = useDispatch();
 
+  const [customer, setCustomer] = useState(currentUser.username);
+  const [phone, setPhone] = useState(
+    currentUser.phone ? currentUser.phone : ""
+  );
+  const [address, setAddress] = useState(
+    currentUser.address ? currentUser.address : ""
+  );
+  const [note, setNote] = useState(currentUser.note ? currentUser.note : "");
+
+  console.log({ customer, phone, address, note });
+  console.log(currentUser);
   useEffect(() => {}, [currentUser]);
 
   const SumPrice = (cart) => {
@@ -36,7 +50,7 @@ const MainInfoCart = () => {
             <div className="step">
               <div className="inner">
                 <div className="icon">
-                  <Circle className="active" />
+                  <ShoppingCart className="active" />
                 </div>
                 <span>Giỏ hàng</span>
               </div>
@@ -44,15 +58,15 @@ const MainInfoCart = () => {
             <div className="step">
               <div className="inner">
                 <div className="icon">
-                  <Circle className="active" />
+                  <Feed className="active" />
                 </div>
-                <span>Thông tin giỏ hàng</span>
+                <span>Thông tin</span>
               </div>
             </div>
             <div className="step">
               <div className="inner">
                 <div className="icon">
-                  <Circle />
+                  <Payment />
                 </div>
                 <span>Thanh toán</span>
               </div>
@@ -68,7 +82,8 @@ const MainInfoCart = () => {
                     <input
                       type="text"
                       className="form-input"
-                      placholder="Nhập tên của bạn"
+                      value={customer}
+                      onChange={(e) => setCustomer(e.target.value)}
                     />
                   </div>
                   <div className="form-group">
@@ -76,24 +91,26 @@ const MainInfoCart = () => {
                     <input
                       type="number"
                       className="form-input"
-                      placholder="Nhập số điện thoại"
+                      value={phone}
+                      onChange={(e) => setPhone(e.target.value)}
                     />
                   </div>
-                  <div className="form-group">
-                    <label htmlFor="">Email</label>
-                    <input
-                      type="text"
-                      className="form-input"
-                      placholder="Nhập email của bạn"
-                    />
-                  </div>
+
                   <div className="form-group">
                     <label htmlFor="">Địa chỉ nhận hàng</label>
-                    <input
-                      type="number"
-                      className="form-input"
-                      placholder="VD: hẻm liên tổ 12-20, Nguyễn Văn Cừ, An Khánh, Ninh Kiều, Cần Thơ"
-                    />
+                    <textarea
+                      className="form-textarea"
+                      value={address}
+                      onChange={(e) => setAddress(e.target.value)}
+                    ></textarea>
+                  </div>
+                  <div className="form-group">
+                    <label htmlFor="">Ghi chú</label>
+                    <textarea
+                      className="form-textarea"
+                      value={note}
+                      onChange={(e) => setNote(e.target.value)}
+                    ></textarea>
                   </div>
                 </form>
               </div>
@@ -120,15 +137,25 @@ const MainInfoCart = () => {
                   <div className="price">{Total}đ</div>
                 </div>
               </div>
-              <div className="note-content">
-                <label htmlFor="notes">Ghi chú</label>
-                <textarea
-                  name="notes"
-                  id="notes"
-                  placeholder="VD: Thêm nhiều tương ớt, tương cà"
-                ></textarea>
-              </div>
-              <Link to="/cart/step3" className="btn-payment">
+              <Link
+                to="/cart/step3"
+                className="btn-payment"
+                onClick={() => {
+                  dispatch(
+                    updateUser({
+                      username: currentUser.username,
+                      email: currentUser.email,
+                      image: currentUser.image,
+                      isAdmin: currentUser.isAdmin,
+                      token: currentUser.token,
+                      phone: phone,
+                      address: address,
+                      customer: customer,
+                      note: note,
+                    })
+                  );
+                }}
+              >
                 Tiếp tục
               </Link>
             </div>

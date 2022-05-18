@@ -3,12 +3,13 @@ const Schema = mongoose.Schema;
 
 const Carts = new Schema(
   {
-    user: { type: String, required: true },
-    dish: { type: String, required: true },
-    quantity: { type: String, required: true },
-    image: { type: String, required: true },
-    price: { type: String, required: true },
-    isPayment: { type: String, required: true },
+    customer: { type: String, required: true },
+    email: { type: String, required: true },
+    phone: { type: String, required: true },
+    address: { type: String, required: true },
+    note: { type: String },
+    dishes: { type: Array, required: true },
+    isPayment: { type: Boolean, required: true },
   },
   { timestamps: true }
 );

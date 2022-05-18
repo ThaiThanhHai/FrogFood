@@ -1,5 +1,5 @@
-.acc-info {
-    width: 100%;
+.history {
+    width: 80%;
     height: auto;
     display: flex;
     align-items: center;
@@ -9,4 +9,55 @@
     margin: 10px;
     margin-left: 2px;
     border-radius: 10px;
+    margin: 20px 50px;
 }
+
+.history .title  {
+    font-size: 20px;
+    color: #51873e;
+    letter-spacing: 0.5px;
+    padding: 10px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+
+.tableWrap.tableHistory {
+  height: 350px;
+  overflow: auto;
+  font-size: 14px;
+  width: 100%;
+}
+  
+.tableHistory table {
+  border-collapse:collapse;
+  width: 100%;
+}
+
+.tableHistory tbody tr {
+  border-bottom: 1px solid #e8e8e8;
+}
+  
+.tableHistory  table td {
+  padding: 16px;
+  text-align: center;
+}
+
+.tableHistory  table td:first-child {
+    width: 15%;
+}
+
+.tableHistory  table td:nth-child(2) {
+  width: 55%;
+}
+
+.tableHistory  table td:nth-child(3) {
+  width: 10%;
+}
+
+.tableHistory  table td:nth-child(4) {
+    width: 20%;
+}
+  
+  
+ 

@@ -1,5 +1,5 @@
-.acc-info {
-    width: 100%;
+.info {
+    width: 80%;
     height: auto;
     display: flex;
     align-items: center;
@@ -7,40 +7,26 @@
     justify-content: center;
     position: relative;
     margin: 10px;
-    margin-left: 2px;
     border-radius: 10px;
-}
-
-
-.info .btn-back {
-    display: block;
-    position: absolute;
-    top: 6px;
-    left: 6px;
-    border: none;
-    outline: none;
-    background: none;
-    color: #51873e;
-}
-
-.info .btn-back .MuiSvgIcon-root {
-    font-size: 30px;
+    margin-left: 100px;
 }
 
 .info .r-title {
-    font-size: 24px;
+    font-size: 20px;
     color: #51873e;
-    letter-spacing: 0.5px;
-    padding: 10px;
-    margin-top: 20px;
+    letter-spacing: 1px;
+    padding: 14px;
+    text-transform: uppercase;
+    font-weight: 500;
 }
 
 .info .account-content {
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: flex-start;
     flex-direction: column;
-    margin-left: 10px;
+    
 }
 
 .account-content .row {
@@ -50,80 +36,42 @@
 .account-content .row .item {
     display: flex;
     align-items: flex-start;
-    justify-content: center;
-    flex-direction: column;
-    padding: 5px;
+    justify-content: flex-start;
+    padding: 10px;
 }
 
 .account-content .row .item label {
-    font-size: 22px;
-    color: #51873e;
-    letter-spacing:0.5px;
+    font-size: 16px;
+    color: #333;
     font-weight: 600;
+    letter-spacing:1px;
+    width: 20%;
 }
 
 .account-content .row .item span {
-    font-size: 20px;
+    width: 75%;
+    font-size: 16px;
     color: #333;
-    letter-spacing:0.5px;
+    letter-spacing:1px;
+    margin-left: 5%;
 }
 
-.account-content .btn-update {
+.info .btn-update {
     padding: 10px;
     border: none;
     outline:none;
     margin: 10px;
     position: absolute;
     bottom: 20px;
-    right: 10px;
-    font-size: 20px;
+    right: 200px;
+    font-size: 16px;
     background: #51873e;
     color: #fff;
-    border-radius:8px;
+    border-radius: 10px;
     cursor: pointer;
     transition: 0.5s;
 }
 
-.account-content .btn-update:hover {
+.info .btn-update:hover {
     color:#ddd;
-}
-
-
-@media (min-width: 950px) {
-    .info .btn-back {
-        display: none;
-    }
-
-    .info .r-title {
-        font-size: 32px;
-        letter-spacing: 1px;
-        padding: 14px;
-        margin-top: 30px;
-    }
-
-    .account-content .row .item {
-        justify-content: flex-start;
-        flex-direction: row;
-        padding: 10px;
-    }
-
-    .account-content .row .item label {
-        font-size: 20px;
-        letter-spacing:1px;
-        width: 200px;
-    }
-
-    .account-content .row .item span {
-        font-size: 20px;
-        color: #222;
-        letter-spacing:1px;
-        margin-left: 10px;
-    }
-
-    .account-content .btn-update {
-        padding: 14px;
-        font-size: 24px;
-        border-radius:10px;
-    }
-    
 }

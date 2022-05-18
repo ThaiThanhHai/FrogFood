@@ -21,17 +21,10 @@ function Header() {
     : null;
   const carts = useSelector((state) => state.cart);
   const myCart = carts.filter((item) => item.user === currentUser.email);
-  // console.log(currentUser);
 
-  useEffect(() => {
-    const toggleMenu = document.querySelector(".toggleMenu");
-    toggleMenu.addEventListener("click", () => {
-      document.querySelector(".rightMenu").classList.toggle("active");
-    });
-  }, [currentUser]);
+  useEffect(() => {}, [currentUser]);
   return (
     <div className="header">
-      {/* logo */}
       <img
         className="logo"
         src="https://voz.vn/attachments/9-b8nhynz-gif.265791/"
@@ -39,13 +32,11 @@ function Header() {
       />
       <h1 className="logoName">Frog Food</h1>
 
-      {/* search */}
       <div className="inputBox">
         <SearchRounded className="searchIcon" />
         <input type="text" className="Tìm kiếm" />
       </div>
 
-      {/* shopping cart */}
       <Link to="/cart" className="shoppingCart">
         <ShoppingCartRounded className="cart" />
         <div className="cart_Content">
@@ -53,9 +44,7 @@ function Header() {
         </div>
       </Link>
 
-      {/* profile */}
-
-      {currentUser.username !== "" && currentUser.image !== "" ? (
+      {currentUser.username && currentUser.image ? (
         <div className="profile">
           <div className="profileContainer">
             <div className="imgBox">
@@ -71,10 +60,6 @@ function Header() {
         </div>
       )}
 
-      {/* toggle */}
-      <div className="toggleMenu">
-        <Dehaze className="toggleIcon" />
-      </div>
       <Outlet />
     </div>
   );

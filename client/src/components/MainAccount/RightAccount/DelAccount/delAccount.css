@@ -1,0 +1,62 @@
+.deleleAccount {
+    width: 80%;
+    height: auto;
+    margin: 30px;
+}
+
+.deleleAccount .f-title {
+    font-size: 20px;
+    color: #51873e;
+    letter-spacing: 0.5px;
+    padding: 10px;
+    text-align: center;
+    text-transform: uppercase;
+}   
+
+.size12 {
+    font-size: 14px;
+}
+
+.color-3 {
+    color: #333;
+    font-weight: 600;
+}
+
+
+.form-group .form-input .custom-radio{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.form-input .custom-radio input {
+    width: 5%;
+}
+
+.form-input .custom-radio label {
+    width: 30%;
+}
+
+.form-input .custom-radio textarea {
+    width: 65%;
+    height: 50px;
+    background: transparent;
+    border: 0.5px solid lightgrey;
+    outline: none;
+    font-size: 14px;
+    padding: 8px;
+}
+
+.f-content .form-group .btn-recall {
+    width: 10%;
+    height: 20%;
+    padding: 10px;
+    background: #51873e;
+    border-radius: 4px;
+    color: #fff;
+    outline: none;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}

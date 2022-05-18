@@ -4,9 +4,6 @@ import "./info.css";
 const Info = () => {
   return (
     <div className="info">
-      <button className="btn-back">
-        <ArrowBackRounded />
-      </button>
       <h2 className="r-title">Thông tin tài khoản</h2>
       <div className="account-content">
         <div className="row">
@@ -24,11 +21,13 @@ const Info = () => {
           </div>
           <div className="item">
             <label>Địa chỉ</label>
-            <span>Hẻm 12-20, Nguyễn Văn Cừ, An Khánh, Ninh Kiều, CT</span>
+            <span>
+              158 Hẻm liên tổ 12-20, Nguyễn Văn Cừ, An Khánh, Ninh Kiều, Cần Thơ
+            </span>
           </div>
         </div>
-        <button className="btn-update">Sửa thông tin</button>
       </div>
+      <button className="btn-update">Sửa thông tin</button>
     </div>
   );
 };

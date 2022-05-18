@@ -1,19 +1,23 @@
 .account-left {
-    width: 100%;
+    width: 20%;
     height: auto;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     position: relative;
-    /* box-shadow: 0px 0px 5px 10px rgba(0, 0, 0, 0.05); */
 }
 
-.account-left.non-menu {
-    /* display: none; */
+.btn-back {
+    display: block;
+    position: absolute;
+    top: 0px;
+    left: 30px;
+    border: none;
+    outline: none;
+    background: none;
+    color: #51873e;
 }
-
-
 
 .l-avatar {
     width: 100%;
@@ -22,12 +26,12 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 20px;
+    margin-top: 10px;
 }
 
 .l-avatar .image {
-    width: 100px;
-    height: 100px;
+    width: 70px;
+    height: 70px;
     background: #333;
     border-radius: 100%;
     display: flex;
@@ -43,10 +47,10 @@
 }
 
 .l-avatar .fullname h3 {
-    font-size: 24px;
+    font-size: 20px;
     color: #51873e;
     letter-spacing:1px;
-    padding: 10px;
+    padding: 20px 10px 10px 10px;
 }
 
 .l-menu ul{
@@ -54,44 +58,41 @@
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
-    padding: 10px;
+    padding: 4px;
 }
 
 .l-menu ul li {
-    padding: 8px;
-    margin: 8px;
-    width: 310px;
-    height: 50px;
+    width: 100%;
+    padding: 12px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    border-radius: 4px;
+    margin: 4px 0px;
 }
+
+.l-menu ul li:hover {
+    background-color: #51873e;
+    color: #fff;
+}
+
+
 
 .l-menu ul li a {
     color: #51873e;
     display: flex;
     justify-content: flex-start;
     align-items: center;
-    font-size: 24px;
+    font-size: 16px;
+}
+
+.l-menu ul li:hover a {
+    color: #fff;
 }
 
 .l-menu ul li a .MuiSvgIcon-root {
     margin-right: 10px;
-    font-size: 30px;
+    font-size: 24px;
 }
 
-@media (min-width: 950px) {
-    .account-left {
-        width: 40%;
-    }
-
-    .l-avatar .fullname h3 {
-        font-size: 24px;
-        padding-top: 20px;
-    }
-
-    .l-menu ul li {
-        margin: 4px;
-    }
-
-    .l-menu ul li a {
-        font-size: 20px;
-    }
-}

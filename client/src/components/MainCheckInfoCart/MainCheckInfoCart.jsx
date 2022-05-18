@@ -1,18 +1,30 @@
 import { useEffect, useState } from "react";
-import { Circle, DeleteTwoTone } from "@mui/icons-material";
+import {
+  Feed,
+  Payment,
+  ShoppingCart,
+  DeleteTwoTone,
+} from "@mui/icons-material";
 import { useDispatch, useSelector } from "react-redux";
-import { removeFromCart } from "../../store/cartSlice";
+import { Link, Outlet, useNavigate } from "react-router-dom";
+import { removeFromCart, removeAllFromCart } from "../../store/cartSlice";
+import { updateUser } from "../../store/userSlice";
+import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
+import Axios from "axios";
 import "./mainCheckInfoCart.css";
 
 const MainCheckInfoCart = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const carts = useSelector((state) => state.cart);
   const currentUser = localStorage.getItem("user")
     ? JSON.parse(localStorage.getItem("user"))
     : null;
   let myCart = carts.filter((item) => item.user === currentUser.email);
-  // console.log(myCart);
-  useEffect(() => {}, [currentUser]);
+  // console.log(currentUser);
+  useEffect(() => {}, [currentUser, myCart]);
+  toast.configure();
 
   const SumPrice = (cart) => {
     let sumPrice = 0;
@@ -27,6 +39,41 @@ const MainCheckInfoCart = () => {
   let fee = 0;
 
   let Total = Sum + ship + fee;
+
+  const handlePayment = async (e) => {
+    e.preventDefault();
+    console.log("Thực hiện chức năng thanh toán");
+
+    let url = "/api/cart/payment";
+    let data = JSON.stringify({ currentUser, myCart });
+    console.log(data);
+    let type = {
+      headers: { "Content-Type": "application/json" },
+    };
+    try {
+      const res = await Axios.post(url, data, type);
+      console.log(res.data);
+      toast.success("Đặt hàng thành công");
+      dispatch(removeAllFromCart({ lenght: myCart.length }));
+      dispatch(
+        updateUser({
+          username: currentUser.username,
+          email: currentUser.email,
+          image: currentUser.image,
+          isAdmin: currentUser.isAdmin,
+          token: currentUser.token,
+          phone: currentUser.phone,
+          address: currentUser.address,
+          customer: currentUser.customer,
+          note: "",
+        })
+      );
+      navigate("/");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <main className="main">
       <div className="wrapper">
@@ -35,7 +82,7 @@ const MainCheckInfoCart = () => {
             <div className="step">
               <div className="inner">
                 <div className="icon">
-                  <Circle className="active" />
+                  <ShoppingCart className="active" />
                 </div>
                 <span>Giỏ hàng</span>
               </div>
@@ -43,7 +90,7 @@ const MainCheckInfoCart = () => {
             <div className="step">
               <div className="inner">
                 <div className="icon">
-                  <Circle className="active" />
+                  <Feed className="active" />
                 </div>
                 <span>Thông tin</span>
               </div>
@@ -51,7 +98,7 @@ const MainCheckInfoCart = () => {
             <div className="step">
               <div className="inner">
                 <div className="icon">
-                  <Circle className="active" />
+                  <Payment className="active" />
                 </div>
                 <span>Thanh toán</span>
               </div>
@@ -66,28 +113,28 @@ const MainCheckInfoCart = () => {
                 <div className="content-info">
                   <div className="info">
                     <p>Tên khách hàng:</p>
-                    <span>Thái Thanh Hải</span>
+                    <span>{currentUser.customer}</span>
                   </div>
                   <div className="info">
                     <p>Số điện thoại:</p>
-                    <span>0332395109</span>
+                    <span>{currentUser.phone}</span>
                   </div>
                   <div className="info">
                     <p>Email:</p>
-                    <span>haib1809343@student.ctu.edu.vn</span>
+                    <span>{currentUser.email}</span>
                   </div>
                   <div className="info">
                     <p>Địa chỉ giao hàng:</p>
-                    <span>
-                      Chợ Trà Ốt, Xã Thông Hòa, Huyện Cầu Kè, Trà Vinh
-                    </span>
+                    <span>{currentUser.address}</span>
                   </div>
                   <div className="info">
                     <p>Ghi chú:</p>
-                    <span></span>
+                    <span>{currentUser.note}</span>
                   </div>
                 </div>
-                <div className="btn-change-info">Thay đổi</div>
+                <Link to="/cart/step2" className="btn-change-info">
+                  Thay đổi
+                </Link>
               </div>
             </div>
             <div className="cart-content check">
@@ -119,13 +166,22 @@ const MainCheckInfoCart = () => {
                     </div>
                   ))}
                 </div>
-                <div className="btn-change-cart">Thay đổi</div>
+                <div className="totalPrice">
+                  <h3>Tổng cộng</h3>
+                  <p className="price">{Total}đ</p>
+                </div>
+                <Link to="/cart" className="btn-change-cart">
+                  Thay đổi
+                </Link>
               </div>
             </div>
-            <button className="btn-payment">Thanh toán</button>
+            <button className="btn-payment" onClick={(e) => handlePayment(e)}>
+              Đặt hàng
+            </button>
           </div>
         </div>
       </div>
+      <Outlet />
     </main>
   );
 };

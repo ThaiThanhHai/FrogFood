@@ -27,7 +27,15 @@ const Login = () => {
     password: "",
   });
   const [dispatchDataLogin, setDispatchDataLogin] = useState([
-    { username: "", email: "", image: "", isAdmin: false, token: "" },
+    {
+      username: "",
+      email: "",
+      image: "",
+      isAdmin: false,
+      token: "",
+      phone: "",
+      address: "",
+    },
   ]);
   const [isComplete, setIsComplete] = useState(false);
   const [isToggle, setIsToggle] = useState(true);
@@ -88,6 +96,8 @@ const Login = () => {
         email: dataRegister.email,
         password: dataRegister.password,
         image: imgDefault,
+        phone: "",
+        address: "",
         isAdmin: false,
       });
       // Call API
@@ -114,6 +124,8 @@ const Login = () => {
               email: dataRegister.email,
               password: dataRegister.password,
               image: downloadURL,
+              phone: "",
+              address: "",
               isAdmin: false,
             });
             // Call API

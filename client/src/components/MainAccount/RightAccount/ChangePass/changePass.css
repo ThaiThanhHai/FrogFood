@@ -1,0 +1,68 @@
+.changePass {
+    width: 80%;
+    height: auto;
+    margin: 30px;
+}
+
+.changePass .f-title {
+    font-size: 20px;
+    color: #51873e;
+    letter-spacing: 0.5px;
+    padding: 10px;
+    text-align: center;
+    text-transform: uppercase;
+}   
+
+.changePass .f-content {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.f-content .form-group {
+    width: 80%;
+    height: auto;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    position: relative;
+    
+}
+
+.f-content .form-group label {
+    width: 30%;
+    font-size: 16px;
+    padding: 10px 0px;
+    color: #333;
+}
+
+.f-content .form-group .form-input {
+    width: 70%;
+}
+
+.f-content .form-group input {
+    width: 100%;
+    font-size: 16px;
+    padding: 10px;
+    color: #333;
+    background: transparent;
+    outline: none;
+    border: 0.5px solid lightgray;
+}
+
+.f-content .form-group .btn-save {
+    width: 10%;
+    height: 20%;
+    padding: 10px;
+    background: #51873e;
+    border-radius: 4px;
+    color: #fff;
+    outline: none;
+    border: none;
+    font-size: 16px;
+    margin-right: 22%;
+    cursor: pointer;
+}

@@ -53,6 +53,8 @@ class UserController {
         username: User[0].username,
         email: User[0].email,
         image: User[0].image,
+        phone: User[0].phone,
+        address: User[0].address,
         isAdmin: User[0].isAdmin,
         token: token,
       });

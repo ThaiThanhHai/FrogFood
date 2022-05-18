@@ -1,0 +1,136 @@
+.delivery {
+    width: 80%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 10px;
+    margin: 10px 50px;
+}
+
+.delivery .r-title {
+    font-size: 20px;
+    color: #51873e;
+    letter-spacing: 0.5px;
+    padding: 10px;
+    font-weight: 500;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.delivery .stepper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin: 20px 0px;
+}
+
+.stepper .step-finish {
+    width: 25%;
+    height: 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.step-finish .step-icon {
+    width: 50px;
+    height: 50px;
+    background: #fff;
+    border-radius: 50%;
+    border: 1px solid #51873e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+}
+
+.step-finish.active .step-icon {
+    background: #51873e;
+}
+
+.step-finish .step-icon .MuiSvgIcon-root {
+    color: #51873e;
+    font-size: 30px;
+}
+
+.step-finish.active .step-icon .MuiSvgIcon-root {
+    color: #fff;
+}
+
+.step-finish .step-text {
+    margin: 0px 15%;
+    width: 70%;
+    height: 50px;
+    margin-top: 20px;
+}
+
+.step-finish.active .step-text {
+    color: #51873e;
+}
+
+.stepper .step-line {
+    top: 20px;
+    width: 80%;
+    height: 4px;
+    background-color: #51873e;
+    position: absolute;
+    z-index: 1;
+}
+
+.orders {
+    width: 80%;
+    height: auto;
+}
+
+.orders .items {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 10%;
+    padding: 10px;
+}
+
+.orders .items .image {
+    width: 10%;
+    object-fit: cover;
+}
+
+.orders .items .name {
+    width: 65%;
+}
+
+.orders .items .quantity {
+    width: 10%;
+}
+
+.orders .items .price {
+    width: 15%;
+    color: red;
+}
+
+.orders .totalDelivery {
+    width: 100%;
+    height: 10%;
+    padding: 10px;
+    border-top: 1px solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.orders .totalDelivery label {
+    width: 85%;
+    font-weight: 600;
+    padding: 10px;
+}
+
+.orders .totalDelivery span {
+    width: 15%;
+    font-weight: 600;
+}
