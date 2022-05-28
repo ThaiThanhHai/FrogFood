@@ -4,6 +4,7 @@ import BtnAdd from "../Components/BtnAdd/BtnAdd";
 import DataCart from "../Components/Datatable/TableCart/DataCart";
 import Title from "../Components/Title/Title";
 import "./orders.css";
+import Loader from "../Components/Loader/Loader";
 import ViewDetail from "../Components/ViewDetail/ViewDetail";
 
 const Orders = () => {
@@ -28,18 +29,26 @@ const Orders = () => {
     handleRead();
   }, [carts]);
 
-  return (
+  const logCart = carts.filter((item) => item.status !== "ok");
+
+  return isLoading ? (
+    <Loader />
+  ) : (
     <div className="cateDish">
       <div className="cateDishContainer">
         <Title title="Danh sách loại món ăn" />
-        <BtnAdd />
+
         <DataCart
-          carts={carts}
+          carts={logCart}
           setIsViewDetail={setIsViewDetail}
           setId={setId}
         />
         {isViewDetail && (
-          <ViewDetail carts={carts} id={id} setIsViewDetail={setIsViewDetail} />
+          <ViewDetail
+            carts={logCart}
+            id={id}
+            setIsViewDetail={setIsViewDetail}
+          />
         )}
         {/* {isShow && <ModalAdd setIsShow={setIsShowAdd} />} */}
         {/* {isShowUpdate && (

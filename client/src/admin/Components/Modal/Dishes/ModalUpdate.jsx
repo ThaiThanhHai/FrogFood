@@ -16,7 +16,6 @@ const ModalUpdate = ({ Dishes, idUpdate, setIsShow }) => {
   const [newCategory, setNewCategory] = useState(Dish[0].category);
   const [newName, setNewName] = useState(Dish[0].name);
   const [newPrice, setNewPrice] = useState(Dish[0].price);
-  const [newQuantity, setNewQuantity] = useState(Dish[0].quantity);
 
   useEffect(() => {
     const handleGetCategory = async () => {
@@ -58,7 +57,6 @@ const ModalUpdate = ({ Dishes, idUpdate, setIsShow }) => {
         category: newCategory,
         name: newName,
         price: newPrice,
-        quantity: newQuantity,
         image: Dish[0].image,
       });
 
@@ -85,7 +83,6 @@ const ModalUpdate = ({ Dishes, idUpdate, setIsShow }) => {
               category: newCategory,
               name: newName,
               price: newPrice,
-              quantity: newQuantity,
               image: downloadURL,
             });
             //Call API
@@ -141,15 +138,6 @@ const ModalUpdate = ({ Dishes, idUpdate, setIsShow }) => {
             name="price"
             value={newPrice}
             onChange={(e) => setNewPrice(e.target.value)}
-            required
-          />
-
-          <label htmlFor="quantity">Số lượng</label>
-          <input
-            type="number"
-            name="quantity"
-            value={newQuantity}
-            onChange={(e) => setNewQuantity(e.target.value)}
             required
           />
 

@@ -9,7 +9,7 @@ const Carts = new Schema(
     address: { type: String, required: true },
     note: { type: String },
     dishes: { type: Array, required: true },
-    isPayment: { type: Boolean, required: true },
+    status: { type: String, required: true },
   },
   { timestamps: true }
 );

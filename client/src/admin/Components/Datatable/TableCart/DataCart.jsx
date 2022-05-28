@@ -7,7 +7,6 @@ import "./dataCart.css";
 
 const DataCart = ({ carts, setId, setIsShow, setIsViewDetail }) => {
   toast.configure();
-
   const handleDelete = async (id) => {
     const url = "/api/categories/delete/" + id;
     try {
@@ -23,6 +22,16 @@ const DataCart = ({ carts, setId, setIsShow, setIsViewDetail }) => {
     try {
       await Axios.put(url, { _id: id });
       toast.success("Xác nhận đơn hàng thành công");
+    } catch (err) {
+      toast.error("Có lỗi xảy ray, vui lòng thử lại!");
+    }
+  };
+
+  const hanldeSuccesDelivery = async (id) => {
+    const url = "/api/cart/delivery";
+    try {
+      await Axios.put(url, { _id: id });
+      toast.success("Đơn hàng đã giao thành công");
     } catch (err) {
       toast.error("Có lỗi xảy ray, vui lòng thử lại!");
     }
@@ -49,7 +58,7 @@ const DataCart = ({ carts, setId, setIsShow, setIsViewDetail }) => {
               <span>Xem chi tiết</span>
             </th>
             <th colSpan="2">
-              <span>Thao tác</span>
+              <span>Hủy đơn</span>
             </th>
           </tr>
         </thead>
@@ -66,9 +75,22 @@ const DataCart = ({ carts, setId, setIsShow, setIsViewDetail }) => {
                 <textarea defaultValue={item.address}></textarea>
               </td>
               <td>
-                {item.isPayment ? (
+                {item.status === "delivery" ? (
                   <div className="btn">
-                    <button className="btn-delivery">Đang giao hàng</button>
+                    <button
+                      className="btn-delivery"
+                      onClick={() => {
+                        window.confirm(
+                          `Đơn hàng của ${item.customer} đã giao thành công? `
+                        ) && hanldeSuccesDelivery(item._id);
+                      }}
+                    >
+                      Đang giao hàng
+                    </button>
+                  </div>
+                ) : item.status === "ok" ? (
+                  <div className="btn">
+                    <button className="btn-ok">Đã giao</button>
                   </div>
                 ) : (
                   <div className="btn">
@@ -76,7 +98,7 @@ const DataCart = ({ carts, setId, setIsShow, setIsViewDetail }) => {
                       className="btn-confirm"
                       onClick={() => {
                         window.confirm(
-                          `Bạn có chắc chắn xác nhận đơn hàng của ${item.customer}? `
+                          `Bạn có muốn xác nhận đơn hàng của ${item.customer}? `
                         ) && handleConfirmation(item._id);
                       }}
                     >
@@ -101,18 +123,9 @@ const DataCart = ({ carts, setId, setIsShow, setIsViewDetail }) => {
               <td>
                 <div className="btn">
                   <button
-                    className="btn-update"
-                    onClick={() => {
-                      setIsShow(true);
-                      setId(item._id);
-                    }}
-                  >
-                    <Edit />
-                  </button>
-                  <button
                     className="btn-delete"
                     onClick={() => {
-                      window.confirm(`Bạn có chắc chắn xóa ${item.name}? `) &&
+                      window.confirm(`Bạn có chắc chắn hủy đơn hàng này ?`) &&
                         handleDelete(item._id);
                     }}
                   >

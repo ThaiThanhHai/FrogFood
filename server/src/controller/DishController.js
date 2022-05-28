@@ -15,7 +15,6 @@ class DishController {
       name: req.body.name,
       image: req.body.image,
       price: req.body.price,
-      quantity: req.body.quantity,
       category: req.body.category,
     });
     try {

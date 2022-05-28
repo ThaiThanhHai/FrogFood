@@ -13,7 +13,6 @@ const ModalAdd = ({ setIsShow, setIsLoading, idDefault }) => {
   const [category, setCategory] = useState("");
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
-  const [quantity, setQuantity] = useState("");
   const [isAddComplete, setIsAddComplete] = useState(false);
   const [checkItemID, setcheckItemID] = useState(false);
 
@@ -83,7 +82,6 @@ const ModalAdd = ({ setIsShow, setIsLoading, idDefault }) => {
             category: category,
             name: name,
             price: price,
-            quantity: quantity,
             image: downloadURL,
           });
           let type = {
@@ -141,15 +139,6 @@ const ModalAdd = ({ setIsShow, setIsLoading, idDefault }) => {
             name="price"
             value={price}
             onChange={(e) => setPrice(e.target.value)}
-            required
-          />
-
-          <label htmlFor="quantity">Số lượng</label>
-          <input
-            type="number"
-            name="quantity"
-            value={quantity}
-            onChange={(e) => setQuantity(e.target.value)}
             required
           />
 

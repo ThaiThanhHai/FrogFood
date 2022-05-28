@@ -69,15 +69,19 @@ const Sidebar = () => {
             <SettingsApplicationsIcon className="icon" />
             <span>Thiết lập</span>
           </li>
-          <p className="title">USER</p>
-          <li>
-            <AccountCircleOutlinedIcon className="icon" />
-            <span>Hồ sơ</span>
-          </li>
-          <li>
-            <ExitToAppIcon className="icon" />
-            <span>Đăng xuất</span>
-          </li>
+          <p className="title">Tài khoản</p>
+          <NavLink to="profile" className="side-link">
+            <li>
+              <AccountCircleOutlinedIcon className="icon" />
+              <span>Hồ sơ</span>
+            </li>
+          </NavLink>
+          <NavLink to="logout" className="side-link">
+            <li>
+              <ExitToAppIcon className="icon" />
+              <span>Đăng xuất</span>
+            </li>
+          </NavLink>
         </ul>
       </div>
       <Outlet />

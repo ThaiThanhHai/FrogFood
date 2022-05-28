@@ -25,7 +25,6 @@ const ItemCard = ({ id, category, image, name, price, quantity }) => {
           name,
           price: Number(price),
           quantity: 1,
-          isPayment: false,
           user: currentUser.email,
         })
       );

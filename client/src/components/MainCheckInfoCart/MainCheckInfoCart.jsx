@@ -45,7 +45,7 @@ const MainCheckInfoCart = () => {
     console.log("Thực hiện chức năng thanh toán");
 
     let url = "/api/cart/payment";
-    let data = JSON.stringify({ currentUser, myCart });
+    let data = JSON.stringify({ currentUser, myCart, status: "order" });
     console.log(data);
     let type = {
       headers: { "Content-Type": "application/json" },
@@ -154,14 +154,6 @@ const MainCheckInfoCart = () => {
                       </div>
                       <div className="price">
                         <span>{item.price}đ</span>
-                      </div>
-                      <div className="remove">
-                        <DeleteTwoTone
-                          onClick={(e) => {
-                            e.preventDefault();
-                            dispatch(removeFromCart(item.id));
-                          }}
-                        />
                       </div>
                     </div>
                   ))}

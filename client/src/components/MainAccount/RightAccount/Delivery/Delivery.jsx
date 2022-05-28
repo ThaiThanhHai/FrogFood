@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Empty from "./Empty/Empty";
+import Axios from "axios";
 import "./delivery.css";
 import {
   EventAvailable,
@@ -8,54 +9,78 @@ import {
   Payments,
 } from "@mui/icons-material";
 
-const Cats = [
-  {
-    image:
-      "https://firebasestorage.googleapis.com/v0/b/food-delivery-93acd.appspot.com/o/categories%2Fhamburger.png?alt=media&token=beed6992-8b68-4b40-83cc-3f447964355f",
-    name: "Hamburger",
-    quantity: "1",
-    price: "60000",
-  },
-  {
-    image:
-      "https://firebasestorage.googleapis.com/v0/b/food-delivery-93acd.appspot.com/o/categories%2Fhamburger.png?alt=media&token=beed6992-8b68-4b40-83cc-3f447964355f",
-    name: "Hamburger",
-    quantity: "1",
-    price: "60000",
-  },
-  {
-    image:
-      "https://firebasestorage.googleapis.com/v0/b/food-delivery-93acd.appspot.com/o/categories%2Fhamburger.png?alt=media&token=beed6992-8b68-4b40-83cc-3f447964355f",
-    name: "Hamburger",
-    quantity: "1",
-    price: "60000",
-  },
-];
+const Delivery = () => {
+  const currentUser = localStorage.getItem("user")
+    ? JSON.parse(localStorage.getItem("user"))
+    : null;
 
-const Notification = () => {
-  return (
+  const [cart, setCart] = useState([]);
+
+  useEffect(() => {
+    const getOrderCart = async () => {
+      let url = "/api/cart/orders/" + currentUser.email;
+      try {
+        const res = await Axios.get(url);
+        setCart(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getOrderCart();
+  }, [cart, currentUser]);
+
+  const currentCart = cart.filter((item) => item.status !== "ok");
+
+  return currentCart.length === 0 ? (
+    <Empty />
+  ) : (
     <div className="delivery">
       <h2 className="r-title">Đơn hàng của bạn</h2>
       <div className="stepper">
-        <div className="step-finish">
+        <div
+          className={
+            currentCart[0].status === "order" ||
+            currentCart[0].status === "delivery"
+              ? "step-finish active"
+              : "step-finish"
+          }
+        >
           <div className="step-icon">
             <Feed />
           </div>
           <div className="step-text">Đơn hàng đã đặt</div>
         </div>
-        <div className="step-finish active">
+        <div
+          className={
+            currentCart[0].status === "delivery"
+              ? "step-finish active"
+              : "step-finish"
+          }
+        >
           <div className="step-icon">
             <Payments />
           </div>
           <div className="step-text">Xác nhận thông tin đơn hàng</div>
         </div>
-        <div className="step-finish">
+        <div
+          className={
+            currentCart[0].status === "delivery"
+              ? "step-finish active"
+              : "step-finish"
+          }
+        >
           <div className="step-icon">
             <LocalShipping />
           </div>
           <div className="step-text">Đơn hàng đang được vận chuyển</div>
         </div>
-        <div className="step-finish">
+        <div
+          className={
+            currentCart[0].status === "ok"
+              ? "step-finish active"
+              : "step-finish"
+          }
+        >
           <div className="step-icon">
             <EventAvailable />
           </div>
@@ -65,8 +90,8 @@ const Notification = () => {
       </div>
 
       <div className="orders">
-        {Cats.map((item, index) => (
-          <div className="items">
+        {currentCart[0].dishes.map((item, index) => (
+          <div className="items" key={index}>
             <div className="image">
               <img src={item.image} alt="" />
             </div>
@@ -90,4 +115,4 @@ const Notification = () => {
   );
 };
 
-export default Notification;
+export default Delivery;

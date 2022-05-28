@@ -26,7 +26,7 @@ const DataDish = ({ Dishes, setId, setIsShow }) => {
               <span>STT</span>
             </th>
             <th>
-              <span>Tên loại món ăn</span>
+              <span>Tên món ăn</span>
             </th>
             <th>
               <span>Link ảnh</span>
@@ -34,9 +34,7 @@ const DataDish = ({ Dishes, setId, setIsShow }) => {
             <th>
               <span>Giá</span>
             </th>
-            <th>
-              <span>Số lượng</span>
-            </th>
+
             <th>
               <span>Thời gian tạo</span>
             </th>
@@ -61,9 +59,7 @@ const DataDish = ({ Dishes, setId, setIsShow }) => {
               <td>
                 <span>{item.price}</span>
               </td>
-              <td>
-                <span>{item.quantity}</span>
-              </td>
+
               <td>
                 <span>{getCreateAt(item.createdAt)}</span>
               </td>

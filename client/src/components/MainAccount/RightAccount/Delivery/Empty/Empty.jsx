@@ -4,7 +4,7 @@ const Empty = () => {
   return (
     <div className="empty">
       <div className="title">
-        <h3>Thông báo</h3>
+        <h3>Đơn hàng trống</h3>
       </div>
       <div className="image">
         <img
@@ -13,7 +13,7 @@ const Empty = () => {
         />
       </div>
       <div className="text">
-        <p>Hiện tại chưa có thông báo!</p>
+        <p>Hiện tại bạn chưa có đơn hàng nào cả!</p>
       </div>
     </div>
   );

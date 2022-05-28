@@ -35,7 +35,7 @@ const Navigation = () => {
       <ul id="menu">
         <Container link={"/"} icon={<HomeRounded />} isHome />
         <Container link={"cart"} icon={<ShoppingCart />} />
-        <Container link={"blog"} icon={<Web />} />
+        {/* <Container link={"blog"} icon={<Web />} /> */}
         <Container link={"account"} icon={<Person />} />
         {isAdmin ? (
           <Container link={"admin"} icon={<AdminPanelSettings />} />

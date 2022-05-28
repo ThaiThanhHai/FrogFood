@@ -1,6 +1,57 @@
+import Axios from "axios";
+import { useState } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 import "./delAccount.css";
 
 const DelAccount = () => {
+  toast.configure();
+  const navigate = useNavigate();
+  const currentUser = localStorage.getItem("user")
+    ? JSON.parse(localStorage.getItem("user"))
+    : null;
+
+  const deleteAccount = async (url) => {
+    try {
+      const res = await Axios.delete(url);
+      toast.success("Thu hồi tài khoản thành công");
+      navigate("/login");
+    } catch (error) {
+      console.log(error);
+      toast.success("Có lỗi xảy ra vui lòng thử lại!");
+    }
+  };
+
+  const Recall = async (url, data, type) => {
+    try {
+      const res = await Axios.post(url, data, type);
+    } catch (error) {
+      console.log(error);
+      toast.success("Có lỗi xảy ra vui lòng thử lại!");
+    }
+  };
+
+  const handleRecall = (e) => {
+    e.preventDefault();
+    let urlDelete = "/api/users/delete2/" + currentUser.email;
+
+    let urlRecall = "/api/users/recall";
+    let data = JSON.stringify({
+      email: currentUser.email,
+      password,
+      reason,
+    });
+    let type = { headers: { "Content-Type": "application/json" } };
+    Recall(urlRecall, data, type);
+    deleteAccount(urlDelete);
+  };
+
+  const [password, setPassword] = useState("");
+  const [reason, setReason] = useState("Chưa tiện dụng");
+  console.log(currentUser);
+  console.log(password);
+  console.log(reason);
   return (
     <div className="deleleAccount">
       <div className="f-title">Thu hồi tài khoản</div>
@@ -10,10 +61,11 @@ const DelAccount = () => {
           <div className="form-input">
             <input
               type="password"
-              class="form-input size12"
+              className="form-input size12"
               placeholder="Nhập mật khẩu"
               name="password"
-              value=""
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
         </div>
@@ -43,9 +95,11 @@ const DelAccount = () => {
             <div className="custom-radio">
               <input
                 type="radio"
-                id="r1"
                 name="customRadio"
-                value="Chưa tiện dụng"
+                value={reason === "Chưa tiện dụng"}
+                onChange={() => {
+                  setReason("Chưa tiện dụng");
+                }}
                 checked
               />
               <label>Chưa tiện dụng</label>
@@ -53,31 +107,35 @@ const DelAccount = () => {
             <div className="custom-radio">
               <input
                 type="radio"
-                id="r1"
                 name="customRadio"
-                value="Chưa tiện dụng"
+                value={reason === "Chất lượng dịch vụ"}
+                onChange={() => {
+                  setReason("Chất lượng dịch vụ");
+                }}
               />
               <label>Chất lượng dịch vụ</label>
             </div>
             <div className="custom-radio">
               <input
                 type="radio"
-                id="r1"
                 name="customRadio"
-                value="Chưa tiện dụng"
+                value={reason === "Lý do khác"}
               />
               <label>Lý do khác</label>
               <textarea
-                name="reason_text"
-                id="reason_text"
-                class="form-control"
+                className="form-control"
                 placeholder="Vui lòng nhập lý do"
+                onChange={(e) => {
+                  setReason(e.target.value);
+                }}
               ></textarea>
             </div>
           </div>
         </div>
         <div className="form-group">
-          <button class="btn-recall">Thu hồi</button>
+          <button className="btn-recall" onClick={(e) => handleRecall(e)}>
+            Thu hồi
+          </button>
         </div>
       </div>
     </div>

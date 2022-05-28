@@ -1,4 +1,5 @@
 const Users = require("../models/Users");
+const Recall = require("../models/Recall");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -83,7 +84,28 @@ class UserController {
     }
   }
 
-  // [PUT] /users/update
+  // [PUT] /users/edit_info
+  async editInfo(req, res, next) {
+    try {
+      console.log(req.body);
+      const User = await Users.updateOne(
+        { email: req.body.email },
+        {
+          username: req.body.username,
+          email: req.body.email,
+          phone: req.body.phone,
+          address: req.body.address,
+        },
+        { new: true }
+      );
+      console.log(User);
+      res.status(200).json(User);
+    } catch (error) {
+      res.status(505).json(error);
+    }
+  }
+
+  // [PUT] /users/change_password
   async changePassword(req, res, next) {
     try {
       console.log(req.body);
@@ -104,6 +126,37 @@ class UserController {
     }
   }
 
+  // [PUT] /users/userChangePassword
+  async userChangePassword(req, res, next) {
+    console.log(req.body);
+    try {
+      const checkUser = await Users.find({ email: req.body.email });
+
+      const passwordEncoded = await bcrypt.compare(
+        req.body.currentPass,
+        checkUser[0].password
+      );
+
+      if (!passwordEncoded) {
+        res.status(401).send({ message: "Mật khẩu không chính xác" });
+      }
+
+      const salt = await bcrypt.genSalt(Number(process.env.SALT));
+      const hashPassword = await bcrypt.hash(req.body.newPass, salt);
+      const User = await Users.updateOne(
+        { email: req.body.email },
+        {
+          password: hashPassword,
+        },
+        { new: true }
+      );
+      console.log(User);
+      res.status(200).json(User);
+    } catch (error) {
+      res.status(505).json(error);
+    }
+  }
+
   // [DELETE] /users/delete/2:id
   async delete(req, res, next) {
     try {
@@ -112,6 +165,46 @@ class UserController {
     } catch (err) {
       res.status(500).json(err);
       console.log(err);
+    }
+  }
+
+  // [DELETE] /users/delete/:email
+  async delete2(req, res, next) {
+    console.log(req.params.email);
+    try {
+      await Users.deleteOne({ email: req.params.email });
+      res.status(200).json("OK");
+    } catch (err) {
+      res.status(500).json(err);
+      console.log(err);
+    }
+  }
+
+  // [POST] /users/recall
+  async recall(req, res, next) {
+    console.log(req.body);
+    try {
+      const checkUser = await Users.find({ email: req.body.email });
+
+      const passwordEncoded = await bcrypt.compare(
+        req.body.currentPass,
+        checkUser[0].password
+      );
+
+      if (!passwordEncoded) {
+        res.status(401).send({ message: "Mật khẩu không chính xác" });
+      }
+      const recall = new Recall({ email, reason });
+      try {
+        const saved = await recall.save();
+        res.status(200).json(saved);
+        console.log("Create Successfully");
+      } catch (error) {
+        res.status(500).json(error);
+        console.log("Create failure");
+      }
+    } catch (error) {
+      console.log(error);
     }
   }
 }

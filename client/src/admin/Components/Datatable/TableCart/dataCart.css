@@ -140,3 +140,17 @@ tbody tr td:nth-child(2) {
   background: #2a92bb;
   color: #fff;
 }
+
+.btn-ok {
+  border: 1px solid #2a34bb;
+  border-radius: 4px;
+  padding: 8px;
+  background: #2a34bb;
+  color: #fff;
+  cursor: pointer;
+}
+
+.btn-ok:hover {
+  background: #2a34bb;
+  color: #fff;
+}

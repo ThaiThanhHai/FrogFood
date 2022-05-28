@@ -1,3 +1,5 @@
+import { useState, useEffect } from "react";
+import Axios from "axios";
 import Empty from "./Empty/Empty";
 import "./history.css";
 
@@ -83,48 +85,55 @@ const Cats = [
 ];
 
 const History = () => {
+  const currentUser = localStorage.getItem("user")
+    ? JSON.parse(localStorage.getItem("user"))
+    : null;
+
+  const [cart, setCart] = useState([]);
+
+  useEffect(() => {
+    const getOrderCart = async () => {
+      let url = "/api/cart/orders/" + currentUser.email;
+      try {
+        const res = await Axios.get(url);
+        setCart(res.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getOrderCart();
+  }, [cart, currentUser]);
+
+  const currentCart = cart.filter((item) => item.status === "ok");
+
   return (
     <div className="history">
       <h3 className="title">Lịch sủ đơn hàng</h3>
       <div className="tableWrap tableHistory">
         <table>
-          {/* <thead>
-            <tr>
-              <th>
-                <span>Ảnh</span>
-              </th>
-              <th>
-                <span>Tên</span>
-              </th>
-              <th>
-                <span>SL</span>
-              </th>
-              <th>
-                <span>Giá</span>
-              </th>
-            </tr>
-          </thead> */}
           <tbody>
-            {Cats.map((item, index) => (
-              <tr key={index}>
-                <td>
-                  <img
-                    src={item.image}
-                    alt="Loại món ăn"
-                    className="itemImage"
-                  />
-                </td>
-                <td>
-                  <span>{item.name}</span>
-                </td>
-                <td>
-                  <span>{item.quantity}</span>
-                </td>
-                <td>
-                  <span>{item.price}</span>
-                </td>
-              </tr>
-            ))}
+            {currentCart.map((item, index) =>
+              item.dishes.map((item, index) => (
+                <tr key={index}>
+                  <td>
+                    <img
+                      src={item.image}
+                      alt="Loại món ăn"
+                      className="itemImage"
+                    />
+                  </td>
+                  <td>
+                    <span>{item.name}</span>
+                  </td>
+                  <td>
+                    <span>{item.quantity}</span>
+                  </td>
+                  <td>
+                    <span>{item.price}</span>
+                  </td>
+                </tr>
+              ))
+            )}
           </tbody>
         </table>
       </div>
